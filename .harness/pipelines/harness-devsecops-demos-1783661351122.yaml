@@ -1,0 +1,35 @@
+pipeline:
+  identifier: Build_vishravi2016_harness_devsecops_demos_1783661376290
+  name: Build harness-devsecops-demos
+  orgIdentifier: default
+  projectIdentifier: mydemos
+  properties:
+    ci:
+      codebase:
+        build: <+input>
+        connectorRef: account.Github
+        repoName: vishravi2016/harness-devsecops-demos
+  stages:
+    - stage:
+        identifier: build
+        name: build
+        spec:
+          caching:
+            enabled: true
+          cloneCodebase: true
+          execution:
+            steps:
+              - step:
+                  identifier: echo
+                  name: echo
+                  spec:
+                    command: echo hello world
+                  timeout: ""
+                  type: Run
+          platform:
+            arch: Amd64
+            os: Linux
+          runtime:
+            spec: {}
+            type: Cloud
+        type: CI
