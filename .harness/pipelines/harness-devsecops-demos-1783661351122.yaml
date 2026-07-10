@@ -11,25 +11,37 @@ pipeline:
         repoName: vishravi2016/harness-devsecops-demos
   stages:
     - stage:
-        identifier: build
-        name: build
+        name: dev
+        identifier: dev
+        description: ""
+        type: CI
         spec:
+          cloneCodebase: true
           caching:
             enabled: true
-          cloneCodebase: true
+            override: true
+          buildIntelligence:
+            enabled: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
           execution:
             steps:
               - step:
-                  identifier: echo
-                  name: echo
-                  spec:
-                    command: echo hello world
-                  timeout: ""
                   type: Run
-          platform:
-            arch: Amd64
-            os: Linux
-          runtime:
-            spec: {}
-            type: Cloud
-        type: CI
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    shell: Sh
+                    command: |-
+                      echo "=== Building Hello World ==="
+                      cd Episode-01/hello-world-app
+                      mvn clean package -q
+                      echo ""
+                      echo "=== Running the App ==="
+                      java -jar target/hello-world-1.0.0.jar
+                      echo ""
+                      echo "=== Pipeline Success! ==="
