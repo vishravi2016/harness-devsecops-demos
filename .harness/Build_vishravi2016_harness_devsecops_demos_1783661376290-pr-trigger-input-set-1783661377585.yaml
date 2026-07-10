@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_vishravi2016_harness_devsecops_demos_1783661376290-pr-trigger-input-set
+  identifier: Build_vishravi2016_harness_devsecops_demos_1783661376290prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: mydemos
+  pipeline:
+    identifier: Build_vishravi2016_harness_devsecops_demos_1783661376290
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
